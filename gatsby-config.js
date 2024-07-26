@@ -1,3 +1,5 @@
+// import {remarkMath} from "remark-math";
+// import {rehypeKatex} from "rehype-katex";
 require("dotenv").config();
 const queries = require("./src/utils/algolia");
 const config = require("./config");
@@ -20,8 +22,25 @@ const plugins = [
     }
   },
   {
+    resolve: `gatsby-transformer-remark`,
+    options: {
+      plugins: [
+        {
+          resolve: `gatsby-remark-katex`,
+          options: {
+            // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
+            strict: `ignore`
+          }
+        }
+      ],
+    },
+  },
+  {
     resolve: 'gatsby-plugin-mdx',
     options: {
+      remarkPlugins: [require('remark-math'), require('remark-html-katex')],
+      // remarkPlugins: [esmRequire("./node_modules/remark-math")],
+      // rehypePlugins: [esmRequire("./node_modules/rehype-katex")],
       gatsbyRemarkPlugins: [
         {
           resolve: "gatsby-remark-images",

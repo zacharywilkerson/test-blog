@@ -257,7 +257,7 @@ export const baseStyles = css`
     padding: 0 !important;
   }
   .navBarDefault {
-    background-color: #001934;
+    background-color: #29596D;
     border-radius: 0;
     border-top: 0;
     margin-bottom: 0;
@@ -377,6 +377,7 @@ export const baseStyles = css`
     color: #001934;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   .sideBarShow {
@@ -450,7 +451,7 @@ export const baseStyles = css`
   }
 
   .hideFrontLine .active > a {
-    background-color: #1ed3c6;
+    background-color: #29596D;
     color: #fff !important;
   }
   .firstLevel ul li .collapser svg path {
@@ -470,7 +471,7 @@ export const baseStyles = css`
   }
 
   .sideBarUL .item > a {
-    color: #1ED3C6;
+    color: #29596D;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -508,13 +509,14 @@ export const baseStyles = css`
     border-color: rgb(230, 236, 241) !important;
     border-style: solid none solid solid;
     border-width: 1px 0px 1px 1px;
-    background-color: #1ed3c6 !important;
+    background-color: #29596D !important;
     color: #fff;
   }
 
   .titleWrapper {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     padding-bottom: 40px;
     border-bottom: 1px solid rgb(230, 236, 241);
     margin-bottom: 32px;
@@ -732,6 +734,12 @@ export const baseStyles = css`
     -webkit-transition: top 0.5s, bottom 0.5s;
   }
 
+  details.exampleProblem {
+    border: 1px solid #c6c5c5;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
   @media (max-width: 767px) {
     .formElement svg path {
       fill: #001934;
@@ -833,7 +841,7 @@ export const baseStyles = css`
     }
 
     .titleWrapper {
-      padding: 0 15px;
+      padding: 0 15px 25px 15px;
       display: block;
     }
 
@@ -863,6 +871,7 @@ export const baseStyles = css`
       max-height: fit-content;
       position: static;
     }
+
   }
 
   @media (min-width: 768px) and (max-width: 991px) {

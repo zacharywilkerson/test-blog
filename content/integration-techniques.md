@@ -1,6 +1,7 @@
 ---
-title: "Syntax Highlighting"
-metaTitle: "Syntax Highlighting is the meta title tag for this page"
+title: "Overview: Integration Techniques"
+subTitle: "Overview"
+metaTitle: "Integration Techniques - CalcPrep | Blog"
 metaDescription: "This is the meta description for this page"
 ---
 
