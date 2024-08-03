@@ -110,9 +110,12 @@ export default class MDXRuntimeTest extends Component {
         <StyledMainWrapper>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </StyledMainWrapper>
-        <div className={'addPaddTopBottom'}>
-          <NextPrevious mdx={mdx} nav={nav} />
-        </div>
+
+        {mdx.fields.slug !== '/about-me' && mdx.fields.slug !== '/contact' && (
+          <div className={'addPaddTopBottom'}>
+            <NextPrevious mdx={mdx} nav={nav} />
+          </div>
+        )}
       </Layout>
     );
   }
