@@ -29,7 +29,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         `
-      ).then(result => {
+      ).then((result) => {
         if (result.errors) {
           console.log(result.errors); // eslint-disable-line no-console
           reject(result.errors);
@@ -37,6 +37,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
+          console.log('node', node.fields.slug);
           createPage({
             path: node.fields.slug ? node.fields.slug : '/',
             component: path.resolve('./src/templates/docs.js'),

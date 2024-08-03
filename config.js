@@ -33,6 +33,8 @@ const config = {
       { text: 'Blog', link: 'https://calcprep.com/' },
       { text: 'Resources', link: 'https://calcprep.com/' },
       { text: 'Tutoring', link: 'https://calcprep.com/' },
+      { text: 'Contact', link: 'https://calcprep.com/contact' },
+      { text: 'About Me', link: 'https://calcprep.com/about-me' },
     ],
     search: {
       enabled: false,
@@ -55,6 +57,8 @@ const config = {
       { text: 'Blog', link: 'https://calcprep.com' },
       { text: 'Resources', link: 'https://calcprep.com' },
       { text: 'Tutoring', link: 'https://calcprep.com' },
+      { text: 'Contact', link: 'https://calcprep.com/contact' },
+      { text: 'About Me', link: 'https://calcprep.com/about-me' },
     ],
     frontLine: false,
     ignoreIndex: true,
