@@ -1,6 +1,6 @@
 const config = {
   gatsby: {
-    pathPrefix: '/blog/',
+    // pathPrefix: '/blog/',
     siteUrl: 'https://calcprep.com',
     gaTrackingId: null,
     trailingSlash: false,
@@ -29,7 +29,13 @@ const config = {
 		      </div>
 		    </a>
 		  </li>`,
-    links: [{ text: '', link: '' }],
+    links: [
+      { text: 'Blog', link: 'https://calcprep.com/' },
+      { text: 'Resources', link: 'https://calcprep.com/' },
+      { text: 'Tutoring', link: 'https://calcprep.com/' },
+      { text: 'Contact', link: 'https://calcprep.com/contact' },
+      { text: 'About Me', link: 'https://calcprep.com/about-me' },
+    ],
     search: {
       enabled: false,
       indexName: '',
@@ -49,14 +55,15 @@ const config = {
     links: [
       // { text: 'CalcPrep - Home Page', link: 'https://hasura.io' },
       { text: 'Blog', link: 'https://calcprep.com' },
-      { text: 'Resources', link: 'https://calcprep.com' }, 
-      { text: 'Tutoring', link: 'https://calcprep.com' }
+      { text: 'Resources', link: 'https://calcprep.com' },
+      { text: 'Tutoring', link: 'https://calcprep.com' },
+      { text: 'Contact', link: 'https://calcprep.com/contact' },
+      { text: 'About Me', link: 'https://calcprep.com/about-me' },
     ],
     frontLine: false,
     ignoreIndex: true,
-    title:
-        "<a href='https://calcprep.com'>CalcPrep</a>",
-      // "<a href='https://calcprep.com'>home</a><div class='greenCircle'></div><a href='https://calcprep.com'>tutoring</a><div class='greenCircle'></div><a href='https://calcprep.com'>blog</a>",
+    title: "<a href='https://calcprep.com'>CalcPrep</a>",
+    // "<a href='https://calcprep.com'>home</a><div class='greenCircle'></div><a href='https://calcprep.com'>tutoring</a><div class='greenCircle'></div><a href='https://calcprep.com'>blog</a>",
   },
   siteMetadata: {
     title: 'Calculus Blog | CalcPrep',

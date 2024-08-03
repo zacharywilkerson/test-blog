@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import config from '../../../config';
 import TreeNode from './treeNode';
 
-const calculateTreeData = edges => {
+const calculateTreeData = (edges) => {
   const originalData = config.sidebar.ignoreIndex
     ? edges.filter(
         ({
@@ -81,7 +81,7 @@ const calculateTreeData = edges => {
       config.gatsby && config.gatsby.trailingSlash ? parts.slice(1, -2) : parts.slice(1, -1);
 
     for (const part of slicedParts) {
-      let tmp = prevItems.find(item => item && item.label == part);
+      let tmp = prevItems.find((item) => item && item.label == part);
 
       if (tmp) {
         if (!tmp.items) {
@@ -96,8 +96,8 @@ const calculateTreeData = edges => {
       }
     }
     // sort items alphabetically.
-    prevItems.map(item => {
-      item.items = item.items.sort(function(a, b) {
+    prevItems.map((item) => {
+      item.items = item.items.sort(function (a, b) {
         if (a.label < b.label) return -1;
         if (a.label > b.label) return 1;
         return 0;
@@ -122,7 +122,7 @@ const Tree = ({ edges }) => {
 
   const defaultCollapsed = {};
 
-  treeData.items.forEach(item => {
+  treeData.items.forEach((item) => {
     if (config.sidebar.collapsedNav && config.sidebar.collapsedNav.includes(item.url)) {
       defaultCollapsed[item.url] = true;
     } else {
@@ -131,11 +131,21 @@ const Tree = ({ edges }) => {
   });
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
-  const toggle = url => {
+  const toggle = (url) => {
     setCollapsed({
       ...collapsed,
       [url]: !collapsed[url],
     });
+  };
+
+  // Filter out "About Me" and "Contact" pages from the sidebar navigation
+  const filteredTreeData = {
+    ...treeData,
+    items: treeData.items.filter(
+      (item) =>
+        item.url !== '/about-me' && // Exclude "About Me" page
+        item.url !== '/contact' // Exclude "Contact" page
+    ),
   };
 
   return (
@@ -143,7 +153,7 @@ const Tree = ({ edges }) => {
       className={`${config.sidebar.frontLine ? 'showFrontLine' : 'hideFrontLine'} firstLevel`}
       setCollapsed={toggle}
       collapsed={collapsed}
-      {...treeData}
+      {...filteredTreeData}
     />
   );
 };

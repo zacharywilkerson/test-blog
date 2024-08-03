@@ -41,10 +41,30 @@ const SidebarLayout = ({ location }) => (
                     ? innerItem.title.replace(/\s+/g, '').toLowerCase()
                     : '#';
 
+                  // Recursively process nested items
+                  const processNestedItems = (items) => {
+                    return items.map((nestedItem, nestedIndex) => {
+                      const nestedItemId = nestedItem.title
+                        ? nestedItem.title.replace(/\s+/g, '').toLowerCase()
+                        : '#';
+                      return (
+                        <ListItem
+                          key={nestedIndex}
+                          to={`#${nestedItemId}`}
+                          level={nestedItem.depth}
+                        >
+                          {nestedItem.title}
+                          {nestedItem.items && processNestedItems(nestedItem.items)}
+                        </ListItem>
+                      );
+                    });
+                  };
+
                   return (
                     <ListItem key={index} to={`#${itemId}`} level={1}>
                       {innerItem.title}
                       {/* {innerItem.items[0].title} */}
+                      {innerItem.items && processNestedItems(innerItem.items)}
                     </ListItem>
                   );
                 });
