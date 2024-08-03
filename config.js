@@ -29,7 +29,11 @@ const config = {
 		      </div>
 		    </a>
 		  </li>`,
-    links: [{ text: '', link: '' }],
+    links: [
+      { text: 'Blog', link: 'https://calcprep.com/' },
+      { text: 'Resources', link: 'https://calcprep.com/' },
+      { text: 'Tutoring', link: 'https://calcprep.com/' },
+    ],
     search: {
       enabled: false,
       indexName: '',
@@ -49,14 +53,13 @@ const config = {
     links: [
       // { text: 'CalcPrep - Home Page', link: 'https://hasura.io' },
       { text: 'Blog', link: 'https://calcprep.com' },
-      { text: 'Resources', link: 'https://calcprep.com' }, 
-      { text: 'Tutoring', link: 'https://calcprep.com' }
+      { text: 'Resources', link: 'https://calcprep.com' },
+      { text: 'Tutoring', link: 'https://calcprep.com' },
     ],
     frontLine: false,
     ignoreIndex: true,
-    title:
-        "<a href='https://calcprep.com'>CalcPrep</a>",
-      // "<a href='https://calcprep.com'>home</a><div class='greenCircle'></div><a href='https://calcprep.com'>tutoring</a><div class='greenCircle'></div><a href='https://calcprep.com'>blog</a>",
+    title: "<a href='https://calcprep.com'>CalcPrep</a>",
+    // "<a href='https://calcprep.com'>home</a><div class='greenCircle'></div><a href='https://calcprep.com'>tutoring</a><div class='greenCircle'></div><a href='https://calcprep.com'>blog</a>",
   },
   siteMetadata: {
     title: 'Calculus Blog | CalcPrep',
