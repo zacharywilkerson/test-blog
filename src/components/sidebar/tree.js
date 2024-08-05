@@ -138,6 +138,30 @@ const Tree = ({ edges }) => {
     });
   };
 
+  // Recursive function to add the /blog prefix to all URLs
+  // const addBlogPrefix = (data) => {
+  //   if (data.items) {
+  //     data.items = data.items.map((item) => {
+  //       // Exclude contact and about-me pages from prefixing
+  //       if (item.url !== '/' && item.url !== '/contact' && item.url !== '/about-me') {
+  //         return {
+  //           ...item,
+  //           url: `/blog${item.url}`,
+  //         };
+  //       } else {
+  //         return item;
+  //       }
+  //     });
+  //     // Filter out contact and about-me pages from sub-items
+  //     data.items = data.items.filter((item) => item.url !== '/contact' && item.url !== '/about-me');
+  //     data.items.forEach(addBlogPrefix); // Recursively call for sub-items
+  //   }
+  //   return data;
+  // };
+
+  // // Apply the prefix to the entire treeData structure
+  // const prefixedTreeData = addBlogPrefix({ ...treeData });
+
   // Filter out "About Me" and "Contact" pages from the sidebar navigation
   const filteredTreeData = {
     ...treeData,
