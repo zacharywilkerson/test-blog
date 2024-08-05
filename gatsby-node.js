@@ -38,8 +38,16 @@ exports.createPages = ({ graphql, actions }) => {
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
           console.log('node', node.fields.slug);
+          let pagePath = node.fields.slug;
+
+          // Add the /blog prefix if it's not a special page
+          if (pagePath !== '/' && pagePath !== '/contact' && pagePath !== '/about-me') {
+            pagePath = `/blog${pagePath}`;
+          }
+
           createPage({
-            path: node.fields.slug ? node.fields.slug : '/',
+            // path: node.fields.slug ? node.fields.slug : '/',
+            path: pagePath,
             component: path.resolve('./src/templates/docs.js'),
             context: {
               id: node.fields.id,
