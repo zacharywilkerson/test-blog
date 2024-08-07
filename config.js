@@ -51,7 +51,6 @@ const config = {
       '/calculus-1',
       '/calculus-2',
       '/calculus-3',
-      '/integration-techniques',
     ],
     collapsedNav: [
       '/precalculus',// add trailing slash if enabled above
@@ -60,7 +59,6 @@ const config = {
       '/calculus-2/applications-of-integrals',
       '/calculus-2/integration-techniques',
       '/calculus-3',
-      '/integration-techniques', // add trailing slash if enabled above
     ],
     links: [
       // { text: 'CalcPrep - Home Page', link: 'https://hasura.io' },
