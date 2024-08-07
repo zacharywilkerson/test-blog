@@ -1,13 +1,33 @@
 ---
 title: "Introduction"
-metaTitle: "This is the title tag of this page"
+metaTitle: "Understanding This Site and How to Navigate It"
 metaDescription: "This is the meta description"
 ---
 
-Some introduction text. Lists out all the headings from h1 to h6. Markdown link handling for relative and absolute URLs. Easy to customise.
+# Behind The Website
+**I created this site with a vision of transforming what already exists:** 
+<ul style="margin-top: -16px">
+  <li>There are online textbooks and guides, but they feel stiff and leave questions to be answered.</li>
+  <li>There are courses and content, but they are hidden behind paywalls. </li>
+  <li>There are downloadables, but they aren't organized and easy to find.</li>
+</ul>
 
-# Heading H1
-Heading 1 text
+I wanted to provide students with a hub to provide resource that *costs nothing* and *doesn't leave you with more questions*. 
+
+<!-- I hope that this site is everything you need it to be. If you have an idea of how I can make this site even better, shoot it my way:
+
+[ INSERT FORM ] -->
+
+# Navigating the Site
+
+As you may have noticed, content is split by course. 
+
+# Need More?
+
+For some, this site might not be enough. I offer LIVE group and individual online sessions every week to help students achieve success in mathematics. For more information, [click here](/tutoring).
+
+
+<!-- 
 
 ```javascript
 import "./node_modules/katex/dist/katex.css";
@@ -74,4 +94,4 @@ Heading 6 text
 ## Links
 
 * Relative: [Codeblock](/codeblock)
-* Absolute: [Demo](https://learn.hasura.io/graphql/react)
+* Absolute: [Demo](https://learn.hasura.io/graphql/react) -->
