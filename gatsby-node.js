@@ -41,9 +41,9 @@ exports.createPages = ({ graphql, actions }) => {
           let pagePath = node.fields.slug;
 
           // Add the /blog prefix if it's not a special page
-          // if (pagePath !== '/' && pagePath !== '/contact' && pagePath !== '/about-me') {
-          //   pagePath = `/blog${pagePath}`;
-          // }
+          if (pagePath !== '/' && pagePath !== '/contact' && pagePath !== '/about-me') {
+            pagePath = `/blog${pagePath}`;
+          }
 
           createPage({
             // path: node.fields.slug ? node.fields.slug : '/',
