@@ -1,6 +1,6 @@
 const config = {
   gatsby: {
-    pathPrefix: '/blog/',
+    // pathPrefix: '/blog/',
     siteUrl: 'https://calcprep.com',
     gaTrackingId: null,
     trailingSlash: false,
