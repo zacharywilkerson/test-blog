@@ -142,18 +142,6 @@ const Tree = ({ edges }) => {
     });
   };
 
-  // sort tree data sub nested items if index is present and the sub nested items have the same parent
-  // treeData.sort((a, b) => {
-  //   console.log('a', a);
-  //   console.log('b', b);
-  //   // if (a.node.frontmatter.index !== null && b.node.frontmatter.index !== null) {
-  //   //   if (a.node.fields.slug.split('/')[1] === b.node.fields.slug.split('/')[1]) {
-  //   //     return a.node.frontmatter.index - b.node.frontmatter.index;
-  //   //   }
-  //   // }
-  //   // return 0;
-  // });
-
   // Recursive function to add the /blog prefix to all URLs
   const addBlogPrefix = (data) => {
     if (data.items) {
