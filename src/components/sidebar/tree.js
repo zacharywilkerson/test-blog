@@ -19,6 +19,7 @@ const calculateTreeData = (edges) => {
       {
         node: {
           fields: { slug, title },
+          frontmatter: { index },
         },
       }
     ) => {
@@ -56,6 +57,7 @@ const calculateTreeData = (edges) => {
           url: slug,
           items: [],
           title,
+          index,
         });
       }
       return accu;
@@ -72,6 +74,7 @@ const calculateTreeData = (edges) => {
   if (config.gatsby && config.gatsby.trailingSlash) {
   }
   tmp.reverse();
+
   return tmp.reduce((accu, slug) => {
     const parts = slug.split('/');
 
@@ -95,11 +98,12 @@ const calculateTreeData = (edges) => {
         prevItems = tmp.items;
       }
     }
+
     // sort items alphabetically.
     prevItems.map((item) => {
       item.items = item.items.sort(function (a, b) {
-        if (a.label < b.label) return -1;
-        if (a.label > b.label) return 1;
+        if (a.index < b.index) return -1;
+        if (a.index > b.index) return 1;
         return 0;
       });
     });
@@ -123,21 +127,32 @@ const Tree = ({ edges }) => {
   const defaultCollapsed = {};
 
   treeData.items.forEach((item) => {
-    if (config.sidebar.collapsedNav && config.sidebar.collapsedNav.includes(item.url)) {
-      defaultCollapsed[item.url] = true;
+    if (config.sidebar.collapsedNav && config.sidebar.collapsedNav.includes(`/blog${item.url}`)) {
+      defaultCollapsed['/blog' + item.url] = true;
     } else {
-      defaultCollapsed[item.url] = false;
+      defaultCollapsed['/blog' + item.url] = false;
     }
   });
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
   const toggle = (url) => {
-    console.log('url', url);
     setCollapsed({
       ...collapsed,
       [url]: !collapsed[url],
     });
   };
+
+  // sort tree data sub nested items if index is present and the sub nested items have the same parent
+  // treeData.sort((a, b) => {
+  //   console.log('a', a);
+  //   console.log('b', b);
+  //   // if (a.node.frontmatter.index !== null && b.node.frontmatter.index !== null) {
+  //   //   if (a.node.fields.slug.split('/')[1] === b.node.fields.slug.split('/')[1]) {
+  //   //     return a.node.frontmatter.index - b.node.frontmatter.index;
+  //   //   }
+  //   // }
+  //   // return 0;
+  // });
 
   // Recursive function to add the /blog prefix to all URLs
   const addBlogPrefix = (data) => {
@@ -160,25 +175,37 @@ const Tree = ({ edges }) => {
     return data;
   };
 
+  const sortNestedItems = (data) => {
+    if (data.items) {
+      // Sort the immediate children based on index if present
+      data.items.sort((a, b) => {
+        if (a.index !== null && b.index !== null) {
+          return a.index - b.index;
+        } else if (a.index !== null) {
+          return -1; // Items with index come first
+        } else if (b.index !== null) {
+          return 1; // Items without index come last
+        } else {
+          return 0; // Default sorting if no index
+        }
+      });
+
+      // Recursively sort nested items
+      data.items.forEach(sortNestedItems);
+    }
+    return data;
+  };
+
   // // Apply the prefix to the entire treeData structure
   const prefixedTreeData = addBlogPrefix({ ...treeData });
-
-  // Filter out "About Me" and "Contact" pages from the sidebar navigation
-  const filteredTreeData = {
-    ...treeData,
-    items: treeData.items.filter(
-      (item) =>
-        item.url !== '/about-me' && // Exclude "About Me" page
-        item.url !== '/contact' // Exclude "Contact" page
-    ),
-  };
+  const sortedData = sortNestedItems(prefixedTreeData);
 
   return (
     <TreeNode
       className={`${config.sidebar.frontLine ? 'showFrontLine' : 'hideFrontLine'} firstLevel`}
       setCollapsed={toggle}
       collapsed={collapsed}
-      {...prefixedTreeData}
+      {...sortedData}
     />
   );
 };

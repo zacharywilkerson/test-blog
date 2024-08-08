@@ -1,8 +1,8 @@
 ---
-title: "Calculus 1"
-subTitle: "Overview"
-metaTitle: "Integration Techniques - CalcPrep | Blog"
-metaDescription: "This is the meta description for this page"
+title: 'Calculus 1'
+subTitle: 'Overview'
+metaTitle: 'Integration Techniques - CalcPrep | Blog'
+metaDescription: 'This is the meta description for this page'
 ---
 
 The following is a code block with JavaScript language syntax highlighting.

@@ -101,13 +101,15 @@ const SidebarLayout = ({ location }) => (
                 slug
                 title
               }
+              frontmatter {
+                index
+              }
             }
           }
         }
       }
     `}
     render={({ allMdx }) => {
-      console.log('allMdx', allMdx);
       return (
         <Sidebar>
           {/* {config.sidebar.title ? (

@@ -34,9 +34,17 @@ export default class MDXRuntimeTest extends Component {
 
     const githubIcon = require('../components/images/github.svg').default;
     const navItems = allMdx.edges
+      .sort((a, b) => {
+        // Sort only when index is not null and nested elements belong to same parent
+        if (a.node.frontmatter.index !== null && b.node.frontmatter.index !== null) {
+          if (a.node.fields.slug.split('/')[1] === b.node.fields.slug.split('/')[1]) {
+            return a.node.frontmatter.index - b.node.frontmatter.index;
+          }
+        }
+        return 0;
+      })
       .map(({ node }) => node.fields.slug)
       .filter((slug) => slug !== '/')
-      .sort()
       .reduce(
         (acc, cur) => {
           if (forcedNavOrder.find((url) => url === cur)) {
@@ -69,7 +77,8 @@ export default class MDXRuntimeTest extends Component {
 
           return { title: node.fields.title, url: node.fields.slug };
         }
-      });
+      })
+      .filter((predicate) => predicate.url !== '/contact' && predicate.url !== '/about-me');
 
     // meta tags
     const metaTitle = mdx.frontmatter.metaTitle;
@@ -153,6 +162,9 @@ export const pageQuery = graphql`
           fields {
             slug
             title
+          }
+          frontmatter {
+            index
           }
         }
       }
