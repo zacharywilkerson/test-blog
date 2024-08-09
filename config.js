@@ -53,12 +53,12 @@ const config = {
       '/calculus-3',
     ],
     collapsedNav: [
-      '/precalculus',// add trailing slash if enabled above
-      '/calculus-1',
-      '/calculus-2',
-      '/calculus-2/applications-of-integrals',
-      '/calculus-2/integration-techniques',
-      '/calculus-3',
+      '/blog/precalculus', // add trailing slash if enabled above
+      '/blog/calculus-1',
+      '/blog/calculus-2',
+      // '/calculus-2/applications-of-integrals',
+      // '/calculus-2/integration-techniques',
+      '/blog/calculus-3',
     ],
     links: [
       // { text: 'CalcPrep - Home Page', link: 'https://hasura.io' },

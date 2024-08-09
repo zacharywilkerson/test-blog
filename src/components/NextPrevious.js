@@ -50,7 +50,7 @@ const NextPrevious = ({ mdx, nav }) => {
   return (
     <StyledNextPrevious>
       {previousInfo.url && currentIndex >= 0 ? (
-        <Link to={nav[currentIndex - 1].url} className={'previousBtn'}>
+        <Link to={`/blog${nav[currentIndex - 1].url}`} className={'previousBtn'}>
           <div className={'leftArrow'}>
             <svg
               preserveAspectRatio="xMidYMid meet"
@@ -82,7 +82,7 @@ const NextPrevious = ({ mdx, nav }) => {
         </Link>
       ) : null}
       {nextInfo.url && currentIndex >= 0 ? (
-        <Link to={nav[currentIndex + 1].url} className={'nextBtn'}>
+        <Link to={`/blog${nav[currentIndex + 1].url}`} className={'nextBtn'}>
           <div className={'nextRightWrapper'}>
             <div className={'smallContent'}>
               <span>Next</span>

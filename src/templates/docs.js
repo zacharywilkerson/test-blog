@@ -33,10 +33,71 @@ export default class MDXRuntimeTest extends Component {
     } = data;
 
     const githubIcon = require('../components/images/github.svg').default;
+
+    // Recursive sorting function
+    const sortNestedItems = (items) => {
+      items.sort((a, b) => {
+        // Sort only when index is not null and nested elements belong to same parent
+        if (a.node.frontmatter?.index !== null && b.node.frontmatter?.index !== null) {
+          // Compare indices, taking into account decimal points
+          const aIndexParts = a.node.frontmatter?.index.toString().split('.');
+          const bIndexParts = b.node.frontmatter?.index.toString().split('.');
+
+          // Compare the integer parts first
+          if (aIndexParts && bIndexParts && parseInt(aIndexParts[0]) !== parseInt(bIndexParts[0])) {
+            return parseInt(aIndexParts[0]) - parseInt(bIndexParts[0]);
+          }
+
+          // If integer parts are equal, compare decimal parts
+          if (aIndexParts && bIndexParts && aIndexParts.length > 1 && bIndexParts.length > 1) {
+            return parseFloat(a.node.frontmatter.index) - parseFloat(b.node.frontmatter.index);
+          }
+
+          // If one has a decimal part and the other doesn't, the one with the decimal part comes later
+          if (aIndexParts && aIndexParts.length > 1) {
+            return 1;
+          } else if (bIndexParts && bIndexParts.length > 1) {
+            return -1;
+          }
+        }
+        return 0;
+      });
+
+      // Recursively sort nested items
+      items.forEach((item) => {
+        if (item.node.fields.slug.split('/').length > 2) {
+          sortNestedItems(
+            item.node.fields.slug
+              .split('/')
+              .slice(1)
+              .reduce((acc, cur) => {
+                const existingItem = acc.find((item) => item.node.fields.slug === cur);
+                if (existingItem) {
+                  return acc;
+                } else {
+                  return [...acc, { node: { fields: { slug: cur } } }];
+                }
+              }, [])
+          );
+        }
+      });
+    };
+
+    // Sort the edges array using the recursive sorting function
+    sortNestedItems(allMdx.edges);
+
     const navItems = allMdx.edges
+      // .sort((a, b) => {
+      //   // Sort only when index is not null and nested elements belong to same parent
+      //   if (a.node.frontmatter.index !== null && b.node.frontmatter.index !== null) {
+      //     if (a.node.fields.slug.split('/')[1] === b.node.fields.slug.split('/')[1]) {
+      //       return a.node.frontmatter.index - b.node.frontmatter.index;
+      //     }
+      //   }
+      //   return 0;
+      // })
       .map(({ node }) => node.fields.slug)
       .filter((slug) => slug !== '/')
-      .sort()
       .reduce(
         (acc, cur) => {
           if (forcedNavOrder.find((url) => url === cur)) {
@@ -69,7 +130,8 @@ export default class MDXRuntimeTest extends Component {
 
           return { title: node.fields.title, url: node.fields.slug };
         }
-      });
+      })
+      .filter((predicate) => predicate.url !== '/contact' && predicate.url !== '/about-me');
 
     // meta tags
     const metaTitle = mdx.frontmatter.metaTitle;
@@ -153,6 +215,9 @@ export const pageQuery = graphql`
           fields {
             slug
             title
+          }
+          frontmatter {
+            index
           }
         }
       }
